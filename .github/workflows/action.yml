@@ -33,6 +33,9 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v3
 
+    - name: Debug context
+      run: echo "${{ toJson(github.event) }}"
+
     - name: Add label based on comment
       uses: actions/github-script@v6
       with:
