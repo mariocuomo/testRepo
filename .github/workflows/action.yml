@@ -53,7 +53,7 @@ jobs:
             let label;
 
             switch (pullRequestType) {
-              case 'bugfix':
+              case 'bug':
                 label = 'bug';
                 break;
               case 'feature':
