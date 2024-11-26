@@ -1,4 +1,5 @@
-name: Auto Assign
+name: Assign Reviewer
+
 on:
   pull_request:
     types: [opened]
@@ -8,17 +9,20 @@ permissions:
   contents: read
 
 jobs:
-  add-reviews:
+  assign-reviewer:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            const reviewers = ['mariocuomo', 'adminSecCop'];
-            const reviewer = reviewers[Math.floor(Math.random() * reviewers.length)];
-            github.rest.pulls.requestReviewers({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
-              reviewers: [reviewer]
-            });
+    - name: Assign reviewer
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const reviewers = ['mariocuomo', 'adminSecCop'];
+          const reviewer = reviewers[Math.floor(Math.random() * reviewers.length)];
+          github.rest.pulls.requestReviewers({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.payload.pull_request.number,
+            reviewers: [reviewer]
+          });
+
