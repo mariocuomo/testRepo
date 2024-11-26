@@ -1,4 +1,1 @@
-test
-clone
-clones
-click
+ala
