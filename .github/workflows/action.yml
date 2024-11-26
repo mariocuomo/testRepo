@@ -40,7 +40,7 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          const comment = context.payload.comment.body;
+          const comment = context.event.comment.body;
           const firstLine = comment.split('\n')[0];
           const match = firstLine.match(/^PULL REQUEST TYPE:\s*(.*)$/i);
           if (match) {
