@@ -40,30 +40,39 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          const comment = context.payload.pull_request.body;
-          const firstLine = comment.split('\n')[0];
-          const match = firstLine.match(/^PULL REQUEST TYPE: \s*(.*)$/i);
+          const description = context.payload.pull_request.body;
+          if (!description) {
+            console.log('No description found');
+            return;
+          }
+          const firstLine = description.split('\n')[0];
+          const match = firstLine.match(/^PULL REQUEST TYPE:\s*(.*)$/i);
+          
           if (match) {
             const pullRequestType = match[1].trim().toLowerCase();
             let label;
+
             switch (pullRequestType) {
-              case 'feature':
-                label = 'feature';
-                break;
               case 'bugfix':
                 label = 'bug';
+                break;
+              case 'feature':
+                label = 'feature';
                 break;
               case 'documentation':
                 label = 'documentation';
                 break;
               default:
-                label = 'other';
+                label = 'needs review';
             }
+
             github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.payload.issue.number,
+              issue_number: context.payload.pull_request.number,
               labels: [label]
             });
+          } else {
+            console.log('No matching PULL REQUEST TYPE found');
           }
 
