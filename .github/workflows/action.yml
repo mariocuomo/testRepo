@@ -81,4 +81,4 @@ jobs:
             return { fileName: fileName};
 
       - name: Run PowerShell script
-        run: pwsh ./Analysis.ps1 -script devices.yaml
+        run: pwsh ./Analysis.ps1 -script "./devices.yaml"
