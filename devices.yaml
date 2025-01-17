@@ -1,0 +1,42 @@
+Descriptor:
+  Name: Investigate your Device Posture Management
+  DisplayName: Investigate your Device Posture Management
+  Description: Skills that lookup your Device Posture Management
+SkillGroups:
+  - Format: KQL
+    Skills:
+      - Name: CountMDEDevicesPerOnboardingStatusCategory
+        DisplayName: Count how many Devices for each distinct Onboarding Status Category
+        Description: Fetches how many Devices for each distinct Onboarding Status Category
+        Settings:
+          Target: Defender
+          Template: |-
+            DeviceInfo
+            | where Timestamp > ago(30d)
+            | summarize count() by OnboardingStatus
+      - Name: MDEOboardedDevicesWithUnhealthySensor
+        DisplayName: Retireve MDE Onboarded Devices with unhealthy sensor
+        Description: Fetches MDE Onboarded Devices with unhealthy sensor
+        Settings:
+          Target: Defender
+          Template: |-
+            DeviceInfo
+            | where Timestamp > ago(30d)
+            | where OnboardingStatus == "Onboarded"
+            | where SensorHealthState == "Inactive"
+            | summarize arg_max(TimeGenerated, *) by DeviceId
+      - Name: MDEInternetFacingDevices
+        DisplayName: Retireve MDE Onboarded Devices that are internet facing
+        Description: Fetches MDE Onboarded Devices that are internet facing
+        Settings:
+          Target: Defender
+          Template: |-
+            DeviceInfo
+            | where Timestamp > ago(30d)
+            | where IsInternetFacing == true
+            | count
+
+
+
+
+
