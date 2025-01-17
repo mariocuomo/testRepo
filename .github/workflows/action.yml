@@ -55,4 +55,3 @@ jobs:
           } else {
             console.log('No matching PULL REQUEST TYPE found');
           }
-
