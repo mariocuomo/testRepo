@@ -67,18 +67,18 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-          const description = context.payload.pull_request.body;
-          if (!description) {
-            console.log('No description found');
-            return;
-          }
-          const secondLine = description.split('\n')[1];
-          const match = firstLine.match(/^MANIFEST NAME:\s*(.*)$/i);
-          if (!match) {
-            throw new Error('No file name found in PR description');
-          }
-          const match = match[1];
-          return { match };
+            const description = context.payload.pull_request.body;
+            if (!description) {
+              console.log('No description found');
+              return;
+            }
+            const secondLine = description.split('\n')[1];
+            const match = firstLine.match(/^MANIFEST NAME:\s*(.*)$/i);
+            if (!match) {
+              throw new Error('No file name found in PR description');
+            }
+            const match = match[1];
+            return { match };
 
       - name: Run PowerShell script
         run: pwsh ./Analysis.ps1 ${{ steps.get-description.outputs.match }}
