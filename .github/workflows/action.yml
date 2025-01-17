@@ -9,23 +9,6 @@ permissions:
   contents: read
 
 jobs:
-  assign-reviewer:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Assign reviewer
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const reviewers = ['mariocuomo', 'adminSecCop'];
-          const reviewer = reviewers[Math.floor(Math.random() * reviewers.length)];
-          github.rest.pulls.requestReviewers({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: context.payload.pull_request.number,
-            reviewers: [reviewer]
-          });
-
   add-label:
     runs-on: ubuntu-latest
 
@@ -50,14 +33,14 @@ jobs:
             let label;
 
             switch (pullRequestType) {
-              case 'bug':
-                label = 'bug';
+              case 'api':
+                label = 'api';
                 break;
-              case 'feature':
-                label = 'feature';
+              case 'gpt':
+                label = 'gpt';
                 break;
-              case 'documentation':
-                label = 'documentation';
+              case 'kql':
+                label = 'kql';
                 break;
               default:
                 label = 'needs review';
