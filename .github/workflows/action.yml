@@ -73,7 +73,7 @@ jobs:
               return;
             }
             const secondLine = description.split('\n')[1];
-            const fileNameMatch  = firstLine.match(/^MANIFEST NAME:\s*(.*)$/i);
+            const fileNameMatch  = secondLine.match(/^MANIFEST NAME:\s*(.*)$/i);
             if (!match) {
               throw new Error('No file name found in PR description');
             }
