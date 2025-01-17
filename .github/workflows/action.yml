@@ -73,12 +73,12 @@ jobs:
               return;
             }
             const secondLine = description.split('\n')[1];
-            const match = firstLine.match(/^MANIFEST NAME:\s*(.*)$/i);
+            const fileNameMatch  = firstLine.match(/^MANIFEST NAME:\s*(.*)$/i);
             if (!match) {
               throw new Error('No file name found in PR description');
             }
-            const match = match[1];
-            return { match };
+            const fileName  = fileNameMatch [1];
+            return { fileName  };
 
       - name: Run PowerShell script
-        run: pwsh ./Analysis.ps1 ${{ steps.get-description.outputs.match }}
+        run: pwsh ./Analysis.ps1 ${{ steps.get-description.outputs.fileName  }}
