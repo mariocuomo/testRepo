@@ -77,7 +77,7 @@ jobs:
             if (!fileNameMatch) {
               throw new Error('No file name found in PR description');
             }
-            const fileName  = fileNameMatch [1];
+            const fileName  = fileNameMatch[1];
             return { fileName: fileName};
 
       - name: Run PowerShell script
