@@ -74,7 +74,7 @@ jobs:
             }
             const secondLine = description.split('\n')[1];
             const fileNameMatch  = secondLine.match(/^MANIFEST NAME:\s*(.*)$/i);
-            if (!match) {
+            if (!fileNameMatch) {
               throw new Error('No file name found in PR description');
             }
             const fileName  = fileNameMatch [1];
