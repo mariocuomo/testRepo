@@ -78,7 +78,7 @@ jobs:
               throw new Error('No file name found in PR description');
             }
             const fileName  = fileNameMatch [1];
-            return { fileName  };
+            return { fileName: fileName};
 
       - name: Run PowerShell script
-        run: pwsh ./Analysis.ps1 -script ${{ steps.get-description.outputs.fileName  }}
+        run: pwsh ./Analysis.ps1 -script ${{ steps.get-description.outputs.fileName}}
