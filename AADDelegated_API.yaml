@@ -1,4 +1,5 @@
 openapi: 3.0.0
+
 info:
   title: User Risks Story via API  
   description: Skills for getting User Risk Story via Graph API Call
@@ -6,7 +7,7 @@ info:
 
 servers:
   - url: https://graph.microsoft.com/v1.0/
-  
+
 paths:
   /identityProtection/riskyUsers/{riskyUserId}/history:
     get:
@@ -15,10 +16,10 @@ paths:
       parameters:
         - name: riskyUserId
           in: path
-          required: true
           schema:
             type: string
+          required: true
           description: The unique identifier of the risky user
-       responses:
+      responses:
         "200":
           description: OK
