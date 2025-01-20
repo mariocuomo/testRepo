@@ -1,0 +1,13 @@
+Descriptor:
+  Name: User Risks Story via API 
+  DisplayName: User Risks Story via API 
+  Description: User Risks Story via API 
+  SupportedAuthTypes:
+    - AADDelegated
+  Authorization:
+    Type: AADDelegated
+    EntraScopes: https://graph.microsoft.com/.default
+SkillGroups:
+  - Format: API
+    Settings:
+        OpenApiSpecUrl: https://raw.githubusercontent.com/mariocuomo/Experimenting-With-Security-Copilot/refs/heads/main/skilling%20series/Day%202%20-%20API/AADDelegated_API/AADDelegated_API.yaml
